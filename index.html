@@ -14,13 +14,66 @@
     overflow-x: hidden;
   }
   header {
+    position: relative;
     padding: 20px;
     text-align: center;
     font-size: 2.5em;
     font-weight: 700;
     letter-spacing: 2px;
     color: #00ffdd;
+    animation: colorCycle 8s linear infinite;
+    user-select: none;
+    overflow: visible;
   }
+
+  /* Dynamic color cycle for header text */
+  @keyframes colorCycle {
+    0% { color: #00ffdd; }
+    25% { color: #ff00dd; }
+    50% { color: #ddff00; }
+    75% { color: #00ddff; }
+    100% { color: #00ffdd; }
+  }
+
+  /* Leaves container */
+  #leaves {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 10;
+  }
+
+  .leaf {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00ffdd;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px #00ffdd);
+    animation-name: floatUp, spin;
+    animation-timing-function: linear, linear;
+    animation-iteration-count: infinite, infinite;
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-100px) translateX(20px);
+      opacity: 0;
+    }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
   section {
     max-width: 900px;
     margin: 30px auto;
@@ -117,7 +170,10 @@
 </head>
 <body>
 
-<header>CoreSuryansh</header>
+<header>
+  CoreSuryansh
+  <div id="leaves"></div>
+</header>
 
 <section>
   <h2 class="fade-in delay-1">Videos</h2>
@@ -252,6 +308,26 @@
     link.click();
     document.body.removeChild(link);
   }
+
+  const leavesContainer = document.getElementById('leaves');
+
+  function createLeaf() {
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.style.left = Math.random() * 100 + '%';
+    leaf.style.top = '100%';
+    const duration = 4000 + Math.random() * 3000;
+    const delay = Math.random() * 3000;
+    leaf.style.animationDuration = duration + 'ms, ' + duration + 'ms';
+    leaf.style.animationDelay = delay + 'ms, ' + delay + 'ms';
+    leavesContainer.appendChild(leaf);
+
+    setTimeout(() => {
+      leaf.remove();
+    }, duration + delay);
+  }
+
+  setInterval(createLeaf, 500);
 </script>
 
 </body>

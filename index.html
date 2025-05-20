@@ -7,71 +7,95 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
   body {
-    margin:0; padding:0;
+    margin: 0; padding: 0;
     font-family: 'Montserrat', sans-serif;
     background: #121212;
     color: #eee;
     overflow-x: hidden;
   }
   header {
-    position: relative;
     padding: 20px;
     text-align: center;
     font-size: 2.5em;
     font-weight: 700;
     letter-spacing: 2px;
     color: #00ffdd;
-    animation: colorCycle 8s linear infinite;
-    user-select: none;
+    position: relative;
     overflow: visible;
+    user-select: none;
+    animation: colorShift 8s linear infinite;
   }
-
-  /* Dynamic color cycle for header text */
-  @keyframes colorCycle {
-    0% { color: #00ffdd; }
-    25% { color: #ff00dd; }
-    50% { color: #ddff00; }
-    75% { color: #00ddff; }
+  @keyframes colorShift {
+    0%   { color: #00ffdd; }
+    25%  { color: #00ccbb; }
+    50%  { color: #00ffaa; }
+    75%  { color: #00ddcc; }
     100% { color: #00ffdd; }
   }
 
-  /* Leaves container */
-  #leaves {
+  /* Leaves container inside header */
+  .leaves-container {
     position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     overflow: visible;
-    z-index: 10;
   }
-
   .leaf {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: #00ffdd;
+    background: linear-gradient(45deg, #0f9d58, #34a853);
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     opacity: 0.8;
-    filter: drop-shadow(0 0 2px #00ffdd);
-    animation-name: floatUp, spin;
-    animation-timing-function: linear, linear;
-    animation-iteration-count: infinite, infinite;
+    filter: drop-shadow(0 0 1px #0f9d58);
+    animation-name: leafFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
-  @keyframes floatUp {
+  @keyframes leafFall {
     0% {
-      transform: translateY(0) translateX(0);
+      transform: translateY(-50px) rotate(0deg);
       opacity: 0.8;
     }
     100% {
-      transform: translateY(-100px) translateX(20px);
+      transform: translateY(120vh) rotate(360deg);
       opacity: 0;
     }
   }
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+
+  /* Fire Welcome animation container */
+  .fire-welcome {
+    margin: 0 auto 40px;
+    text-align: center;
+    color: #ff6a00;
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    user-select: none;
+    position: relative;
+    width: fit-content;
+    animation: glowFire 2.5s ease-in-out infinite;
+  }
+  /* Flickering fire glow effect */
+  @keyframes glowFire {
+    0%, 100% {
+      text-shadow:
+        0 0 5px #ff7f00,
+        0 0 10px #ff7f00,
+        0 0 20px #ff4500,
+        0 0 30px #ff4500,
+        0 0 40px #ff8c00;
+      color: #ff6a00;
+    }
+    50% {
+      text-shadow:
+        0 0 10px #ff9a1a,
+        0 0 15px #ff8c00,
+        0 0 30px #ff3300,
+        0 0 40px #ff4500,
+        0 0 60px #ff7f00;
+      color: #ff8c00;
+    }
   }
 
   section {
@@ -109,6 +133,7 @@
     font-size: 3em;
     color: #00ffdd;
     margin-bottom: 10px;
+    user-select: none;
   }
   .card-title {
     font-size: 1.2em;
@@ -130,6 +155,7 @@
     font-weight: 700;
     cursor: pointer;
     transition: background 0.25s ease;
+    user-select: none;
   }
   button:hover {
     background: #00ccb3;
@@ -149,6 +175,7 @@
     letter-spacing: 1px;
     box-shadow: 0 0 15px #00ffdd88;
     transition: background 0.3s ease;
+    user-select: none;
   }
   .drive-section a:hover {
     background: #00ccb3;
@@ -172,122 +199,61 @@
 
 <header>
   CoreSuryansh
-  <div id="leaves"></div>
+  <div class="leaves-container"></div>
 </header>
 
-<section>
-  <h2 class="fade-in delay-1">Videos</h2>
-  <div class="cards fade-in delay-2" id="videos">
-    <div class="card">
-      <div class="card-icon">🎬</div>
-      <div class="card-title">Sample Video.mp4</div>
-      <div class="buttons">
-        <button onclick="window.open('sample-video.mp4','_blank')">View</button>
-        <button onclick="downloadFile('sample-video.mp4')">Download</button>
-      </div>
-    </div>
-  
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">Formal Letter Invitation.docx</div>
-      <div class="buttons">
-        <button onclick="window.open('Formal Letter invitation.docx','_blank')">View</button>
-        <button onclick="downloadFile('Formal Letter invitation.docx')">Download</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">The Journey to the End of the Earth.docx</div>
-      <div class="buttons">
-        <button onclick="window.open('The Journey to the End of the  Earth.docx','_blank')">View</button>
-        <button onclick="downloadFile('The Journey to the End of the  Earth.docx')">Download</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">The Third Level -12.pdf</div>
-      <div class="buttons">
-        <button onclick="window.open('The Third Level -12.pdf','_blank')">View</button>
-        <button onclick="downloadFile('The Third Level -12.pdf')">Download</button>
-      </div>
-    </div>
-
+<!-- Fire Welcome Animation -->
+<div class="fire-welcome fade-in delay-1">
+  Welcome to CoreSuryansh!
 </div>
-</section>
 
 <section>
-  <h2 class="fade-in delay-1">Images</h2>
-  <div class="cards fade-in delay-2" id="images">
-    <div class="card">
-      <div class="card-icon">🖼️</div>
-      <div class="card-title">Sample Image.jpg</div>
-      <div class="buttons">
-        <button onclick="window.open('sample-image.jpg','_blank')">View</button>
-        <button onclick="downloadFile('sample-image.jpg')">Download</button>
-      </div>
-    </div>
-  
+  <h2 class="fade-in delay-2">Files</h2>
+  <div class="cards fade-in delay-3" id="files">
     <div class="card">
       <div class="card-icon">📄</div>
-      <div class="card-title">Formal Letter Invitation.docx</div>
+      <div class="card-title">Change in PSR.docx</div>
       <div class="buttons">
-        <button onclick="window.open('Formal Letter invitation.docx','_blank')">View</button>
-        <button onclick="downloadFile('Formal Letter invitation.docx')">Download</button>
+        <button onclick="window.open('Change in PSR.docx','_blank')">View</button>
+        <button onclick="downloadFile('Change in PSR.docx')">Download</button>
       </div>
     </div>
     <div class="card">
       <div class="card-icon">📄</div>
-      <div class="card-title">The Journey to the End of the Earth.docx</div>
+      <div class="card-title">D_Hoshiarpur.pdf</div>
       <div class="buttons">
-        <button onclick="window.open('The Journey to the End of the  Earth.docx','_blank')">View</button>
-        <button onclick="downloadFile('The Journey to the End of the  Earth.docx')">Download</button>
+        <button onclick="window.open('D_Hoshiarpur.pdf','_blank')">View</button>
+        <button onclick="downloadFile('D_Hoshiarpur.pdf')">Download</button>
       </div>
     </div>
     <div class="card">
       <div class="card-icon">📄</div>
-      <div class="card-title">The Third Level -12.pdf</div>
+      <div class="card-title">Readme.md</div>
       <div class="buttons">
-        <button onclick="window.open('The Third Level -12.pdf','_blank')">View</button>
-        <button onclick="downloadFile('The Third Level -12.pdf')">Download</button>
+        <button onclick="window.open('Readme.md','_blank')">View</button>
+        <button onclick="downloadFile('Readme.md')">Download</button>
       </div>
     </div>
-
-</div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Ws Ch1 Guarantee and past adjustments.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('Ws Ch1 Guarantee and past adjustments.docx','_blank')">View</button>
+        <button onclick="downloadFile('Ws Ch1 Guarantee and past adjustments.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">goodwill worksheet latest.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('goodwill worksheet latest.docx','_blank')">View</button>
+        <button onclick="downloadFile('goodwill worksheet latest.docx')">Download</button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h2 class="fade-in delay-1">Other Downloads</h2>
-  <div class="cards fade-in delay-2" id="other-downloads">
-      
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">Formal Letter Invitation.docx</div>
-      <div class="buttons">
-        <button onclick="window.open('Formal Letter invitation.docx','_blank')">View</button>
-        <button onclick="downloadFile('Formal Letter invitation.docx')">Download</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">The Journey to the End of the Earth.docx</div>
-      <div class="buttons">
-        <button onclick="window.open('The Journey to the End of the  Earth.docx','_blank')">View</button>
-        <button onclick="downloadFile('The Journey to the End of the  Earth.docx')">Download</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">The Third Level -12.pdf</div>
-      <div class="buttons">
-        <button onclick="window.open('The Third Level -12.pdf','_blank')">View</button>
-        <button onclick="downloadFile('The Third Level -12.pdf')">Download</button>
-      </div>
-    </div>
-
-</div>
-</section>
-
-<section class="drive-section fade-in delay-3">
+<section class="drive-section fade-in delay-4">
   <h2>Google Drive Media</h2>
   <a href="https://drive.google.com/drive/folders/1X1AkQLNTGgMp2xoSsXEJlndxV66kBhn2" target="_blank" rel="noopener noreferrer">
     Open Google Drive Folder
@@ -309,25 +275,27 @@
     document.body.removeChild(link);
   }
 
-  const leavesContainer = document.getElementById('leaves');
+  // Leaves animation code
+  const leavesContainer = document.querySelector('.leaves-container');
 
   function createLeaf() {
     const leaf = document.createElement('div');
     leaf.classList.add('leaf');
     leaf.style.left = Math.random() * 100 + '%';
-    leaf.style.top = '100%';
-    const duration = 4000 + Math.random() * 3000;
-    const delay = Math.random() * 3000;
-    leaf.style.animationDuration = duration + 'ms, ' + duration + 'ms';
-    leaf.style.animationDelay = delay + 'ms, ' + delay + 'ms';
+    leaf.style.animationDuration = (5 + Math.random() * 5) + 's';
+    leaf.style.animationDelay = (Math.random() * 5) + 's';
+    leaf.style.width = (10 + Math.random() * 15) + 'px';
+    leaf.style.height = leaf.style.width;
     leavesContainer.appendChild(leaf);
 
-    setTimeout(() => {
+    // Remove leaf after animation ends to keep DOM clean
+    leaf.addEventListener('animationend', () => {
       leaf.remove();
-    }, duration + delay);
+    });
   }
 
-  setInterval(createLeaf, 500);
+  // Create leaves continuously
+  setInterval(createLeaf, 600);
 </script>
 
 </body>

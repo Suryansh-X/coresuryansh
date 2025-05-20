@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CoreSuryansh</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  body {
+    margin:0; padding:0;
+    font-family: 'Montserrat', sans-serif;
+    background: #121212;
+    color: #eee;
+    overflow-x: hidden;
+  }
+  header {
+    padding: 20px;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #00ffdd;
+  }
+  section {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+  h2 {
+    color: #00ffdd;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #00ffdd;
+    padding-bottom: 8px;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .card {
+    background: #222;
+    border-radius: 12px;
+    flex: 1 1 260px;
+    padding: 15px 20px;
+    box-shadow: 0 0 10px #00ffdd66;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px #00ffddbb;
+  }
+  .card-icon {
+    font-size: 3em;
+    color: #00ffdd;
+    margin-bottom: 10px;
+  }
+  .card-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    user-select: none;
+  }
+  .buttons {
+    display: flex;
+    gap: 12px;
+  }
+  button {
+    flex: 1;
+    background: #00ffdd;
+    color: #121212;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
+  button:hover {
+    background: #00ccb3;
+  }
+  .drive-section {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .drive-section a {
+    display: inline-block;
+    background: #00ffdd;
+    color: #121212;
+    padding: 15px 25px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px #00ffdd88;
+    transition: background 0.3s ease;
+  }
+  .drive-section a:hover {
+    background: #00ccb3;
+  }
+  .fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+  }
+  .fade-in.delay-1 { animation-delay: 0.3s; }
+  .fade-in.delay-2 { animation-delay: 0.6s; }
+  .fade-in.delay-3 { animation-delay: 0.9s; }
+  .fade-in.delay-4 { animation-delay: 1.2s; }
+
+  @keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(20px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+
+<header>CoreSuryansh</header>
+
+<section>
+  <h2 class="fade-in delay-1">Videos</h2>
+  <div class="cards fade-in delay-2" id="videos">
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <div class="card-title">Sample Video.mp4</div>
+      <div class="buttons">
+        <button onclick="window.open('sample-video.mp4','_blank')">View</button>
+        <button onclick="downloadFile('sample-video.mp4')">Download</button>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Formal Letter Invitation.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('Formal Letter invitation.docx','_blank')">View</button>
+        <button onclick="downloadFile('Formal Letter invitation.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">The Journey to the End of the Earth.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('The Journey to the End of the  Earth.docx','_blank')">View</button>
+        <button onclick="downloadFile('The Journey to the End of the  Earth.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">The Third Level -12.pdf</div>
+      <div class="buttons">
+        <button onclick="window.open('The Third Level -12.pdf','_blank')">View</button>
+        <button onclick="downloadFile('The Third Level -12.pdf')">Download</button>
+      </div>
+    </div>
+
+</div>
+</section>
+
+<section>
+  <h2 class="fade-in delay-1">Images</h2>
+  <div class="cards fade-in delay-2" id="images">
+    <div class="card">
+      <div class="card-icon">🖼️</div>
+      <div class="card-title">Sample Image.jpg</div>
+      <div class="buttons">
+        <button onclick="window.open('sample-image.jpg','_blank')">View</button>
+        <button onclick="downloadFile('sample-image.jpg')">Download</button>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Formal Letter Invitation.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('Formal Letter invitation.docx','_blank')">View</button>
+        <button onclick="downloadFile('Formal Letter invitation.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">The Journey to the End of the Earth.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('The Journey to the End of the  Earth.docx','_blank')">View</button>
+        <button onclick="downloadFile('The Journey to the End of the  Earth.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">The Third Level -12.pdf</div>
+      <div class="buttons">
+        <button onclick="window.open('The Third Level -12.pdf','_blank')">View</button>
+        <button onclick="downloadFile('The Third Level -12.pdf')">Download</button>
+      </div>
+    </div>
+
+</div>
+</section>
+
+<section>
+  <h2 class="fade-in delay-1">Other Downloads</h2>
+  <div class="cards fade-in delay-2" id="other-downloads">
+      
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Formal Letter Invitation.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('Formal Letter invitation.docx','_blank')">View</button>
+        <button onclick="downloadFile('Formal Letter invitation.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">The Journey to the End of the Earth.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('The Journey to the End of the  Earth.docx','_blank')">View</button>
+        <button onclick="downloadFile('The Journey to the End of the  Earth.docx')">Download</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">The Third Level -12.pdf</div>
+      <div class="buttons">
+        <button onclick="window.open('The Third Level -12.pdf','_blank')">View</button>
+        <button onclick="downloadFile('The Third Level -12.pdf')">Download</button>
+      </div>
+    </div>
+
+</div>
+</section>
+
+<section class="drive-section fade-in delay-3">
+  <h2>Google Drive Media</h2>
+  <a href="https://drive.google.com/drive/folders/1X1AkQLNTGgMp2xoSsXEJlndxV66kBhn2" target="_blank" rel="noopener noreferrer">
+    Open Google Drive Folder
+  </a>
+</section>
+
+<audio id="bgAudio" loop autoplay>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_06c4eab8bc.mp3?filename=ambient-electronic-11138.mp3" type="audio/mp3" />
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  function downloadFile(fileName) {
+    const link = document.createElement('a');
+    link.href = fileName;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
+</body>
+</html>

@@ -2,27 +2,251 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coming Soon</title>
-  <link rel="stylesheet" href="./src/css/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CoreSuryansh</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+      color: #eee;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      font-size: 3em;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowText 8s ease infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes rainbowText {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-weight: 700;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 8px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #1e1e1e;
+      border-radius: 14px;
+      flex: 1 1 260px;
+      padding: 18px 20px;
+      box-shadow: 0 0 18px rgba(0, 255, 221, 0.4);
+      border: 2px solid transparent;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px rgba(0, 255, 221, 0.7);
+      border-color: #00ffdd;
+    }
+
+    .card-icon {
+      font-size: 3em;
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 1.2em;
+      font-weight: 700;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    button {
+      flex: 1;
+      background: linear-gradient(135deg, #00ffff, #007bff);
+      color: #121212;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #00ccff, #0055ff);
+      box-shadow: 0 0 10px #00ccff;
+      color: white;
+    }
+
+    .drive-section {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .drive-section a {
+      display: inline-block;
+      background: #00ffdd;
+      color: #121212;
+      padding: 15px 30px;
+      font-weight: 700;
+      border-radius: 12px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      box-shadow: 0 0 20px #00ffdd80;
+      transition: background 0.3s ease;
+    }
+
+    .drive-section a:hover {
+      background: #00ccbb;
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .fade-in.delay-1 { animation-delay: 0.3s; }
+    .fade-in.delay-2 { animation-delay: 0.6s; }
+    .fade-in.delay-3 { animation-delay: 0.9s; }
+    .fade-in.delay-4 { animation-delay: 1.2s; }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Falling Leaves */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      background-image: url('https://pngimg.com/uploads/autumn_leaves/autumn_leaves_PNG3615.png');
+      background-repeat: repeat;
+      background-size: 80px;
+      animation: fall 20s linear infinite;
+      z-index: 1;
+      opacity: 0.07;
+    }
+
+    @keyframes fall {
+      0% {background-position: 0 -100%;}
+      100% {background-position: 0 200%;}
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <p class="email">Say hello! <a href="mailto:hello@msdhaliwal.com">hello@msdhaliwal.com</a></p>
-    <h1>We Are <br /> Coming Soon</h1>
-    
-    <div class="countdown">
-      <div><span id="days">00</span><p>Days</p></div>
-      <div><span id="hours">00</span><p>Hours</p></div>
-      <div><span id="minutes">00</span><p>Minutes</p></div>
-      <div><span id="seconds">00</span><p>Seconds</p></div>
-    </div>
-    
-    <p class="quote">
-      We're strong believers that the best solutions come from gathering new insights and pushing conventional boundaries.
-    </p>
-  </div>
 
-  <script src="./src/js/script.js"></script>
+<header>CoreSuryansh</header>
+
+<section>
+  <h2 class="fade-in delay-1">Downloads</h2>
+  <div class="cards fade-in delay-2" id="downloads">
+
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Change in PSR.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('Change in PSR.docx','_blank')">View</button>
+        <button onclick="downloadFile('Change in PSR.docx')">Download</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">D_Hoshiarpur.pdf</div>
+      <div class="buttons">
+        <button onclick="window.open('D_Hoshiarpur.pdf','_blank')">View</button>
+        <button onclick="downloadFile('D_Hoshiarpur.pdf')">Download</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Readme.md</div>
+      <div class="buttons">
+        <button onclick="window.open('Readme.md','_blank')">View</button>
+        <button onclick="downloadFile('Readme.md')">Download</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Ws Ch1 Guarantee and past adjustments.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('Ws Ch1 Guarantee and past adjustments.docx','_blank')">View</button>
+        <button onclick="downloadFile('Ws Ch1 Guarantee and past adjustments.docx')">Download</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <div class="card-title">Goodwill Worksheet Latest.docx</div>
+      <div class="buttons">
+        <button onclick="window.open('goodwill worksheet latest.docx','_blank')">View</button>
+        <button onclick="downloadFile('goodwill worksheet latest.docx')">Download</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="drive-section fade-in delay-3">
+  <h2>Google Drive Media</h2>
+  <a href="https://drive.google.com/drive/folders/1X1AkQLNTGgMp2xoSsXEJlndxV66kBhn2" target="_blank" rel="noopener noreferrer">
+    Open Google Drive Folder
+  </a>
+</section>
+
+<audio id="bgAudio" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_06c4eab8bc.mp3?filename=ambient-electronic-11138.mp3" type="audio/mp3" />
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  function downloadFile(fileName) {
+    const link = document.createElement('a');
+    link.href = fileName;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
 </body>
-</html>
+        </html>

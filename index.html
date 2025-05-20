@@ -5,97 +5,102 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CoreSuryansh</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-  body {
-    margin: 0; padding: 0;
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+  body, html {
+    margin:0; padding:0;
     font-family: 'Montserrat', sans-serif;
     background: #121212;
     color: #eee;
     overflow-x: hidden;
   }
+
+  #loader {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: #121212;
+    color: #00ffdd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-size: 2em;
+    letter-spacing: 2px;
+  }
+
+  @keyframes rainbowColors {
+    0%{color:#00ffdd;}
+    20%{color:#ff00dd;}
+    40%{color:#ddff00;}
+    60%{color:#00ddff;}
+    80%{color:#ffdd00;}
+    100%{color:#00ffdd;}
+  }
   header {
+    position: relative;
     padding: 20px;
     text-align: center;
     font-size: 2.5em;
     font-weight: 700;
     letter-spacing: 2px;
     color: #00ffdd;
-    position: relative;
-    overflow: visible;
-    user-select: none;
-    animation: colorShift 8s linear infinite;
-  }
-  @keyframes colorShift {
-    0%   { color: #00ffdd; }
-    25%  { color: #00ccbb; }
-    50%  { color: #00ffaa; }
-    75%  { color: #00ddcc; }
-    100% { color: #00ffdd; }
+    animation: rainbowColors 8s linear infinite;
   }
 
-  /* Leaves container inside header */
   .leaves-container {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0; left: 50%;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     overflow: visible;
+    transform: translateX(-50%);
+    z-index: 10;
   }
   .leaf {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(45deg, #0f9d58, #34a853);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: -40px;
+    width: 24px;
+    height: 24px;
     opacity: 0.8;
-    filter: drop-shadow(0 0 1px #0f9d58);
-    animation-name: leafFall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    user-select: none;
+    pointer-events: none;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
   }
-  @keyframes leafFall {
-    0% {
-      transform: translateY(-50px) rotate(0deg);
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(120vh) rotate(360deg);
-      opacity: 0;
-    }
+  @keyframes fall {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(110vh); opacity: 0; }
+  }
+  @keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
   }
 
-  /* Fire Welcome animation container */
-  .fire-welcome {
-    margin: 0 auto 40px;
-    text-align: center;
-    color: #ff6a00;
-    font-size: 1.8em;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    user-select: none;
-    position: relative;
-    width: fit-content;
-    animation: glowFire 2.5s ease-in-out infinite;
-  }
-  /* Flickering fire glow effect */
   @keyframes glowFire {
-    0%, 100% {
-      text-shadow:
-        0 0 5px #ff7f00,
-        0 0 10px #ff7f00,
-        0 0 20px #ff4500,
-        0 0 30px #ff4500,
-        0 0 40px #ff8c00;
-      color: #ff6a00;
-    }
-    50% {
-      text-shadow:
-        0 0 10px #ff9a1a,
-        0 0 15px #ff8c00,
-        0 0 30px #ff3300,
-        0 0 40px #ff4500,
-        0 0 60px #ff7f00;
-      color: #ff8c00;
-    }
+    0%, 100% { text-shadow: 0 0 10px #ff6, 0 0 20px #ff6600, 0 0 30px #ff3300; color: #ff9933;}
+    50% { text-shadow: 0 0 20px #ff9, 0 0 40px #ff3300, 0 0 60px #ff0000; color: #ffcc66;}
+  }
+  .fire-welcome {
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+    margin: 30px auto 10px;
+    animation: glowFire 2s ease-in-out infinite alternate;
+    user-select: none;
+    color: #ff9933;
+  }
+
+  .typewriter-text {
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: -15px;
+    margin-bottom: 40px;
+    color: #00ffdd;
+    font-weight: 400;
+    letter-spacing: 1px;
+    user-select: none;
   }
 
   section {
@@ -111,6 +116,7 @@
     border-bottom: 2px solid #00ffdd;
     padding-bottom: 8px;
   }
+
   .cards {
     display: flex;
     flex-wrap: wrap;
@@ -133,7 +139,6 @@
     font-size: 3em;
     color: #00ffdd;
     margin-bottom: 10px;
-    user-select: none;
   }
   .card-title {
     font-size: 1.2em;
@@ -141,6 +146,7 @@
     margin-bottom: 15px;
     user-select: none;
   }
+
   .buttons {
     display: flex;
     gap: 12px;
@@ -155,11 +161,11 @@
     font-weight: 700;
     cursor: pointer;
     transition: background 0.25s ease;
-    user-select: none;
   }
   button:hover {
     background: #00ccb3;
   }
+
   .drive-section {
     margin-top: 40px;
     text-align: center;
@@ -175,11 +181,11 @@
     letter-spacing: 1px;
     box-shadow: 0 0 15px #00ffdd88;
     transition: background 0.3s ease;
-    user-select: none;
   }
   .drive-section a:hover {
     background: #00ccb3;
   }
+
   .fade-in {
     animation: fadeInUp 0.8s ease forwards;
     opacity: 0;
@@ -188,28 +194,48 @@
   .fade-in.delay-2 { animation-delay: 0.6s; }
   .fade-in.delay-3 { animation-delay: 0.9s; }
   .fade-in.delay-4 { animation-delay: 1.2s; }
-
   @keyframes fadeInUp {
     0% {opacity: 0; transform: translateY(20px);}
     100% {opacity: 1; transform: translateY(0);}
+  }
+
+  @media(max-width: 600px){
+    .cards {
+      flex-direction: column;
+    }
+    .card {
+      width: 100%;
+    }
+    .buttons {
+      flex-direction: column;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 </style>
 </head>
 <body>
 
+<div id="loader">Loading CoreSuryansh...</div>
+
 <header>
   CoreSuryansh
-  <div class="leaves-container"></div>
+  <div class="leaves-container" aria-hidden="true"></div>
 </header>
 
-<!-- Fire Welcome Animation -->
 <div class="fire-welcome fade-in delay-1">
-  Welcome to CoreSuryansh!
+  🔥 Welcome to CoreSuryansh!
+</div>
+
+<div class="typewriter-text fade-in delay-2">
+  <span id="typed"></span>
 </div>
 
 <section>
-  <h2 class="fade-in delay-2">Files</h2>
-  <div class="cards fade-in delay-3" id="files">
+  <h2 class="fade-in delay-1">Documents</h2>
+  <div class="cards fade-in delay-2" id="documents">
     <div class="card">
       <div class="card-icon">📄</div>
       <div class="card-title">Change in PSR.docx</div>
@@ -253,50 +279,18 @@
   </div>
 </section>
 
-<section class="drive-section fade-in delay-4">
-  <h2>Google Drive Media</h2>
-  <a href="https://drive.google.com/drive/folders/1X1AkQLNTGgMp2xoSsXEJlndxV66kBhn2" target="_blank" rel="noopener noreferrer">
-    Open Google Drive Folder
-  </a>
+<section class="drive-section fade-in delay-3">
+  <h2>Google Drive Links</h2>
+  <a href="https://drive.google.com/drive/folders/YOUR_DRIVE_FOLDER_ID" target="_blank" rel="noopener noreferrer">Open Drive Folder</a>
 </section>
 
-<audio id="bgAudio" loop autoplay>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_06c4eab8bc.mp3?filename=ambient-electronic-11138.mp3" type="audio/mp3" />
-  Your browser does not support the audio element.
+<audio id="bg-music" autoplay loop>
+  <source src="background-music.mp3" type="audio/mpeg" />
 </audio>
 
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
-  function downloadFile(fileName) {
-    const link = document.createElement('a');
-    link.href = fileName;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  // Leaves animation code
-  const leavesContainer = document.querySelector('.leaves-container');
-
-  function createLeaf() {
-    const leaf = document.createElement('div');
-    leaf.classList.add('leaf');
-    leaf.style.left = Math.random() * 100 + '%';
-    leaf.style.animationDuration = (5 + Math.random() * 5) + 's';
-    leaf.style.animationDelay = (Math.random() * 5) + 's';
-    leaf.style.width = (10 + Math.random() * 15) + 'px';
-    leaf.style.height = leaf.style.width;
-    leavesContainer.appendChild(leaf);
-
-    // Remove leaf after animation ends to keep DOM clean
-    leaf.addEventListener('animationend', () => {
-      leaf.remove();
-    });
-  }
-
-  // Create leaves continuously
-  setInterval(createLeaf, 600);
-</script>
-
-</body>
-</html>
+  // Loader hide
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'none';
